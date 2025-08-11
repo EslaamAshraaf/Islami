@@ -443,40 +443,40 @@ class QuranTab extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: ListView.separated(
-              separatorBuilder: (context, index) => Divider(
-                indent: 64,
-                endIndent: 64,
-                color: Colors.white,
-                thickness: 1,
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  indent: 64,
+                  endIndent: 64,
+                  color: Colors.white,
+                  thickness: 1,
+                ),
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, SuraDetailsScreen.routeName,
+                          arguments: SuraItemModel(
+                              suraNames[index], suraNamesEn[index], index));
+                    },
+                    child: SuraItem(
+                      index: index + 1,
+                      nameAr: suraNames[index],
+                      nameEn: suraNamesEn[index],
+                      numOfVerses: numOfVerses[index],
+                    ),
+                  );
+                  // return Text(
+                  //   suraNames[index],
+                  //   style: TextStyle(fontSize: 18, color: Colors.white),
+                  // );
+                },
+                itemCount: suraNames.length,
               ),
-              padding: EdgeInsets.zero,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, SuraDetailsScreen.routeName,
-                        arguments: SuraItemModel(
-                            suraNames[index], suraNamesEn[index], index));
-                  },
-                  child: SuraItem(
-                    index: index + 1,
-                    nameAr: suraNames[index],
-                    nameEn: suraNamesEn[index],
-                    numOfVerses: numOfVerses[index],
-                  ),
-                );
-                // return Text(
-                //   suraNames[index],
-                //   style: TextStyle(fontSize: 18, color: Colors.white),
-                // );
-              },
-              itemCount: suraNames.length,
             ),
-          ),
-        )
+          )
       ],
     );
   }
